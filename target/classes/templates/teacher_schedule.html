@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DSP - Schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <th:block th:fragment="links" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        <link rel="stylesheet" th:href="@{/static/css/teacher_schedule.css}"/>
+
+    </th:block>
+</head>
+
+<body>
+
+        <th:block th:insert="fragments/navbarTeacher.html :: navbar" />
+
+
+        <br></br>
+
+        <div class="col-md-3 text-center">
+            <a class="btn btn-outline-secondary" href="/home">Back</a>
+        </div>
+
+
+        <form  align="center" th:action="'/teacherSchedule'"  method='GET'>
+                <div align="center">
+                    <p>
+                        <select name="weekIsOdd" class="form-control">
+                            <option th:value="null"> Even/Odd week</option>
+                            <option   th:value="false" th:selected="${weekIsOdd} == false">Even week</option>
+                            <option   th:value="true"  th:selected="${weekIsOdd} == true">Odd week</option>>
+                        </select>
+                    </p>
+                    <p>
+                        <select name="subjectId" class="form-control">
+                            <option th:value="null">All subjects</option>
+                            <option  th:each="el: ${subjects}" th:value="${el.getId()}" th:text="${el.getName()}" th:selected="${subjectId}==${el.getId()}"></option>>
+                        </select>
+                    </p>
+                    <button class="btn" type="submit">Show</button></td>
+                </div>
+        </form>
+
+
+        <br></br>
+        <h2 align="center" class="container">Tomorrow schedule</h2>
+        <br></br>
+
+        <h5 th:if="${tomorrowSchedulesByDays.get(0).size() == 0}" align="center">There are no classes tomorrow</h5>
+        <div th:if="${tomorrowSchedulesByDays.get(0).size() != 0}" class="col-md-8 offset-md-2" th:with="schdList= ${tomorrowSchedulesByDays.get(0)}">
+            <div class="card mt-4">
+                <div class="card-header" style="background-color: lightsteelblue">
+                    <div th:if="${schdList.size() != 0}" align="center" th:switch="${schdList.get(0).getDayName()}">
+                        <h3 class="font-weight-bold" th:case="'MONDAY'">Monday</h3>
+                        <h3 class="font-weight-bold" th:case="'TUESDAY'">Tuesday</h3>
+                        <h3 class="font-weight-bold" th:case="'WEDNESDAY'">Wednesday</h3>
+                        <h3 class="font-weight-bold" th:case="'THURSDAY'">Thursday</h3>
+                        <h3 class="font-weight-bold" th:case="'FRIDAY'">Friday</h3>
+                        <h3 class="font-weight-bold" th:case="'SATURDAY'">Saturday</h3>
+                        <h3 class="font-weight-bold" th:case="'SUNDAY'">Sunday</h3>
+                    </div>
+
+                    <br><br>
+                    <div class="row">
+                        <h5 class="col-md-4 ">Subject</h5>
+                        <h5 class="col-md-3 ">Time</h5>
+                        <h5 class="col-md-3 ">Lesson type</h5>
+                        <h5 class="col-md-2 ">Groups</h5>
+                    </div>
+
+                </div>
+
+                <div class="card-body" style="background-color: #C0D0E5">
+                    <div>
+                        <div th:each="schd: ${schdList}" class="row" >
+                            <a class="h5 text-left col-md-4" th:text="${schd.getSubjectDto().getName()}" data-toggle="collapse" data-target="#collapse--" aria-expanded="true"
+                               th:attrappend="data-target=${schd.getId()}" style="color: black">
+                            </a>
+                            <dl class="col-md-3">
+                                <dt class="h5 font-weight-light" th:text="${schd.getClassTimeDto().getStartTime()+'-'+schd.getClassTimeDto().getEndTime()}"></dt>
+                                <dt class="font-weight-light" th:text="${schd.getWeekIsOdd()} ? 'Odd week' : 'Even week'"></dt>
+                            </dl>
+                            <div class="font-weight-light col-md-3" th:if="${schd.getClassType()=='LECTURE'}"}>Lecture</div>
+                            <div class="font-weight-light col-md-3" th:if="${schd.getClassType()=='SEMINAR'}"}>Seminar</div>
+                            <div class="font-weight-light col-md-3" th:if="${schd.getClassType()=='LAB'}"}>Laboratory workshop</div>
+
+                            <div class="col-md-2">
+                                <dl th:each="group: ${weekScheduleMap.get(schd)}">
+                                    <dt class="font-weight-light" th:text="${group.getGroupName()}"></dt>
+                                </dl>
+                            </div>
+                            <div class="collapse" th:id="|collapse--${schd.getId()}|">
+                                <div>
+                                    <div th:if="${schd.getLessonLink() != null && !schd.getLessonLink().equals('')}">
+                                        <div class="col-md-12" th:text="'Lesson link:'"></div>
+
+                                        <a class="col-md-12" th:href="${schd.getLessonLink()}" th:text="${schd.getLessonLink()}" style="word-break: break-word"></a>
+                                        <div class="btn btn-sm" data-toggle="modal" data-target="#modalAddLink-"
+                                             th:attrappend="data-target=${schd.getId()}">update</div>
+
+                                    </div>
+                                    <div class="col-md-12" th:if="${schd.getLessonLink() == null || schd.getLessonLink().equals('')}">
+                                        <div class="btn btn-sm" data-toggle="modal" data-target="#modalAddLink-"
+                                             th:attrappend="data-target=${schd.getId()}">add link</div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br></br></br>
+
+        <h2 align="center">Week schedule</h2>
+        <br></br>
+
+        <div class="col-md-8 offset-md-2" th:each="schdList: ${weekSchedulesByDays}">
+            <div class="card rounded mt-4" th:if="${schdList.size() != 0}" style="border-radius: 5px">
+                <div class="card-header" th:style="${schdList.get(0).getDayName().equals(todayDayName)} ? 'background-color: #f39999' :
+                                                                                                          'background-color: lightsteelblue'">
+
+                    <div align="center" th:switch="${schdList.get(0).getDayName()}">
+                        <h3 class="font-weight-bold" th:case="'MONDAY'">Monday</h3>
+                        <h3 class="font-weight-bold" th:case="'TUESDAY'">Tuesday</h3>
+                        <h3 class="font-weight-bold" th:case="'WEDNESDAY'">Wednesday</h3>
+                        <h3 class="font-weight-bold" th:case="'THURSDAY'">Thursday</h3>
+                        <h3 class="font-weight-bold" th:case="'FRIDAY'">Friday</h3>
+                        <h3 class="font-weight-bold" th:case="'SATURDAY'">Saturday</h3>
+                        <h3 class="font-weight-bold" th:case="'SUNDAY'">Sunday</h3>
+                    </div>
+
+                    <br><br>
+                    <div class="row">
+                        <h5 class="col-md-4 ">Subject</h5>
+                        <h5 class="col-md-3 ">Time</h5>
+                        <h5 class="col-md-3 ">Lesson type</h5>
+                        <h5 class="col-md-2 ">Groups</h5>
+                    </div>
+
+                </div>
+
+
+
+                <div class="card-body"  th:style="${schdList.get(0).getDayName().equals(todayDayName)} ? 'background-color: #f6b2b2' :
+                'background-color: #C0D0E5'">
+
+                    <div class="row" th:each="schd: ${schdList}">
+                        <a class="h5 text-left col-md-4" th:text="${schd.getSubjectDto().getName()}" data-toggle="collapse" data-target="#collapse-" aria-expanded="true"
+                           th:attrappend="data-target=${schd.getId()}" style="color: black">
+                        </a>
+                        <dl class="col-md-3">
+                            <dt class="h5 font-weight-light" th:text="${schd.getClassTimeDto().getStartTime()+'-'+schd.getClassTimeDto().getEndTime()}"></dt>
+                            <dt class="font-weight-light" th:text="${schd.getWeekIsOdd()} ? 'Odd week' : 'Even week'"></dt>
+                        </dl>
+                        <div class="font-weight-light col-md-3" th:if="${schd.getClassType()=='LECTURE'}"}>Lecture</div>
+                        <div class="font-weight-light col-md-3" th:if="${schd.getClassType()=='SEMINAR'}"}>Seminar</div>
+                        <div class="font-weight-light col-md-3" th:if="${schd.getClassType()=='LAB'}"}>Laboratory workshop</div>
+
+                        <div class="col-md-2">
+                            <dl th:each="group: ${weekScheduleMap.get(schd)}">
+                                <dt class="font-weight-light" th:text="${group.getGroupName()}"></dt>
+                            </dl>
+                        </div>
+                        <div class="collapse" th:id="|collapse-${schd.getId()}|">
+                            <div>
+                                <div th:if="${schd.getLessonLink() != null && !schd.getLessonLink().equals('')}">
+                                    <div class="col-md-12" th:text="'Lesson link:'"></div>
+
+                                    <a class="col-md-12" style="word-break: break-word" th:href="${schd.getLessonLink()}" th:text="${schd.getLessonLink()}"></a>
+                                    <div class="btn btn-sm" data-toggle="modal" data-target="#modalAddLink-"
+                                         th:attrappend="data-target=${schd.getId()}">update</div>
+
+                                </div>
+                                <div class="col-md-12" th:if="${schd.getLessonLink() == null || schd.getLessonLink().equals('')}">
+                                    <div class="btn btn-sm" data-toggle="modal" data-target="#modalAddLink-"
+                                         th:attrappend="data-target=${schd.getId()}">add link</div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" th:id="|modalAddLink-${schd.getId()}|" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"  th:text="${schd.getLessonLink() == null} ? 'Add link' : 'Update link'"></h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form th:action="'/updateLessonLink'" method="post">
+
+
+                                            <input name="scheduleId" type="hidden"  th:value="${schd.getId()}" class="form-control">
+                                            <input name="weekIsOdd" type="hidden"  th:value="${weekIsOdd}" class="form-control">
+                                            <input name="subjectId" type="hidden"  th:value="${subjectId}" class="form-control">
+
+                                            <input th:if="${schd.getLessonLink() == null}" name="lessonLink" type="text" class="form-control" style="width: 100%">
+                                            <input th:if="${schd.getLessonLink() != null}" name="lessonLink" type="text" th:value="${schd.getLessonLink()}" class="form-control" style="width: 100%">
+                                            <br>
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                Save
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <th:block th:insert="fragments/commoneJsFiles.html :: jsFiles"/>
+<br><br>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DSP - Homework</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <th:block th:fragment="links" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        <link rel="stylesheet" th:href="@{/static/css/assignments_for_teacher.css}"/>
+    </th:block>
+
+</head>
+<body>
+<th:block th:insert="fragments/navbarTeacher.html :: navbar" />
+
+<br>
+
+<div class="col-md-3 text-center">
+    <a class="btn btn-outline-secondary" th:href="'/teacherHomework/getEvents?sortingType='+${sortingType}+'&subjectName='+${subjectNameSort}+'&pageNumber='+${pageNumber}">Back</a>
+</div>
+
+
+<table align="center" class="table myTable">
+    <thead>
+        <tr>
+            <td>Subject</td>
+            <td th:text="${subjectName}"></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Start date</td>
+            <td th:text="${startDate}"></td>
+        </tr>
+        <tr>
+            <td>End date</td>
+            <td th:text="${endDate}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<div th:if="${unassessedAssignments.size() > 0}">
+    <h4 align="center" class="container">Unverified works</h4>
+    <br>
+    <table  align="center" class="table">
+
+        <thead class="thead">
+        <tr>
+            <th scope="col"><h5>Student</h5></th>
+            <th scope="col"><h5>File</h5></th>
+            <th scope="col"><h5>Commentary</h5></th>
+            <th scope="col"><h5>Grade</h5></th>
+<!--            <th scope="col"></th>-->
+        </tr>
+        </thead>
+
+        <tbody>
+            <div th:each="el:${unassessedAssignments}">
+                <tr>
+                    <form th:if="${el.getId() != null}" th:action="'/teacherHomework/saveResponseForAssignment/' + ${el.getId()}" th:method="POST">
+                        <td>
+                            <div  th:text="${el.getStudent().getName() + ' ' + el.getStudent().getSurname()}"></div>
+                        </td>
+                        <td>
+                            <div th:unless="${el.getDbFile() == null}">
+                                <p><a th:href="'/teacherHomework/downloadFile/' + ${el.getDbFile().getId()}" class="btn btn-sm" download>Download</a>
+                            </div>
+                        </td>
+
+                        <td width="35%">
+                            <div th:if="${el.getStudentCommentary() != null && !el.getStudentCommentary().equals('')}"class="text-left font-weight-bold">Student commentary:</div>
+                            <div class="text-left" th:text="${el.getStudentCommentary()}"></div>
+                            <div class ="text-left font-weight-bold">Your commentary:</div>
+                            <input th:if="${el.getTeacherCommentary() == null}" type="text" name="commentary" class="form-control">
+                            <input th:unless="${el.getTeacherCommentary() == null}" type="text" name="commentary" class="form-control" th:value="${el.getTeacherCommentary()}">
+                        </td>
+
+                        <td width="10%">
+                            <input type="text" name="grade" class="form-control">
+                        </td>
+
+                        <input  type="hidden" name="eventId" class="form-control" th:value="${el.getEvent().getId()}">
+                        <input  type="hidden" name="groupId" class="form-control" th:value="${el.getEvent().getGroup().getId()}">
+                        <input type="hidden" name="startDate" class="form-control" th:value="${startDate}">
+                        <input type="hidden" name="endDate"  class="form-control"th:value="${endDate}">
+                        <input type="hidden" name="subjectName" class="form-control" th:value="${subjectName}">
+
+                        <input type="hidden" name="sortingType" class="form-control" th:value="${sortingType}">
+                        <input type="hidden" name="subjectNameSort" class="form-control" th:value="${subjectNameSort}">
+                        <input type="hidden" name="pageNumber" class="form-control" th:value="${pageNumber}">
+
+
+                        <td width="15%">
+                            <button class="btn btn-sm" type="submit">Save</button>
+                        </td>
+                    </form>
+                    <div th:if="${el.getId()==null}">
+                        <td>
+                            <div  th:text="${el.getStudent().getName() + ' ' + el.getStudent().getSurname()}"></div>
+                        </td>
+                        <td>
+                        </td>
+                        <td width="35%">
+                        </td>
+                        <td width="10%">
+                        </td>
+                    </div>
+                </tr>
+            </div>
+        </tbody>
+    </table>
+</div>
+
+<div th:if="${assessedAssignments.size() > 0}">
+    <h4 align="center" class="container">Verified works</h4>
+    <br>
+    <table align="center" class="table">
+
+        <thead class="thead">
+        <tr>
+            <th scope="col"><h5>Student</h5></th>
+            <th scope="col"><h5>File</h5></th>
+            <th scope="col"><h5>Commentary</h5></th>
+            <th scope="col"><h5>Grade</h5></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <div th:each="el:${assessedAssignments}">
+                <tr>
+                    <form  th:action="'/teacherHomework/saveResponseForAssignment/' + ${el.getId()}" th:method="POST">
+                        <td>
+                            <b th:text="${el.getStudent().getName() + ' ' + el.getStudent().getSurname()}"></b>
+                        </td>
+                        <td>
+                            <div th:unless="${el.getDbFile() == null}">
+                                <p><a th:href="'/teacherHomework/downloadFile/' + ${el.getDbFile().getId()}" class="btn btn-sm" download>Download</a>
+                            </div>
+                        </td>
+                        <td width="35%">
+                            <div th:if="${el.getStudentCommentary() != null && !el.getStudentCommentary().equals('')}"class="text-left font-weight-bold">Student commentary:</div>
+                            <div class="text-left" th:text="${el.getStudentCommentary()}"></div>
+                            <div class ="text-left font-weight-bold">Your commentary:</div>
+                            <input th:if="${el.getTeacherCommentary() == null}" type="text" name="commentary" class="form-control">
+                            <input th:unless="${el.getTeacherCommentary() == null}" type="text" name="commentary" class="form-control" th:value="${el.getTeacherCommentary()}">
+
+                        </td>
+                        <td width="10%">
+                            <input th:if="${el.getGrade() == null}" type="text" name="grade" class="form-control">
+                            <input th:unless="${el.getGrade() == null}" type="text" name="grade" class="form-control" th:value="${el.getGrade()}">
+                        </td>
+
+                        <input  type="hidden" name="eventId" class="form-control" th:value="${el.getEvent().getId()}">
+                        <input  type="hidden" name="groupId" class="form-control" th:value="${el.getEvent().getGroup().getId()}">
+                        <input type="hidden" name="startDate"  th:value="${startDate}">
+                        <input type="hidden" name="endDate"  th:value="${endDate}">
+                        <input type="hidden" name="subjectName" th:value="${subjectName}">
+
+                        <input type="hidden" name="sortingType" class="form-control" th:value="${sortingType}">
+                        <input type="hidden" name="subjectNameSort" class="form-control" th:value="${subjectNameSort}">
+                        <input type="hidden" name="pageNumber" class="form-control" th:value="${pageNumber}">
+
+
+                        <td width="15%">
+                            <button class="btn btn-sm" type="submit">
+                                Update
+                            </button>
+                        </td>
+                    </form>
+                </tr>
+            </div>
+        </tbody>
+    </table>
+</div>
+<th:block th:insert="fragments/commoneJsFiles.html :: jsFiles"/>
+</body>
+</html>

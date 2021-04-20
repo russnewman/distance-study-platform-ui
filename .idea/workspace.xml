@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5451aa8b-34a8-4737-a25d-8b7d0249f786" name="Default Changelist" comment="version 1.0">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/student_schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/student_schedule.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1hESwJ0ox7vR5bHVejczNN5amoV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programming\Java\DSP_UI\distance-study-web\src\main\resources\static\css" />
+      <recent name="D:\Programming\Java\DSP_UI\distance-study-web\src\main\resources\templates\teacherHomework" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.DistanceStudyWebApplication">
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BSP.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="templates.fragments in distance-study-web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="distance-study-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="templates.fragments.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="templates.fragments" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BSP.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DistanceStudyWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="distance-study-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.netcracker.edu.distancestudyweb.DistanceStudyWebApplication" />
+      <option name="ACTIVE_PROFILES" value="security" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/../../DSP_BACK/dspBack/src/main/java/com/netcracker/edu/distancestudyplatform/config" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.templates.fragments in distance-study-web" />
+        <item itemvalue="JUnit.templates.fragments in distance-study-web" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5451aa8b-34a8-4737-a25d-8b7d0249f786" name="Default Changelist" comment="" />
+      <created>1599574995996</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599574995996</updated>
+      <workItem from="1599574997853" duration="11483000" />
+      <workItem from="1599648339828" duration="22471000" />
+      <workItem from="1599720252873" duration="2223000" />
+      <workItem from="1599731169426" duration="11346000" />
+      <workItem from="1599756872599" duration="5033000" />
+      <workItem from="1599803608055" duration="16559000" />
+      <workItem from="1599848788752" duration="627000" />
+      <workItem from="1599890529806" duration="21414000" />
+      <workItem from="1599983190952" duration="16245000" />
+      <workItem from="1600066227018" duration="10864000" />
+      <workItem from="1600154643789" duration="8195000" />
+      <workItem from="1600166860700" duration="33000" />
+      <workItem from="1600166920655" duration="2204000" />
+      <workItem from="1600245221124" duration="18627000" />
+      <workItem from="1600324473169" duration="6912000" />
+      <workItem from="1600340889952" duration="10471000" />
+      <workItem from="1600409512337" duration="1306000" />
+      <workItem from="1600589342524" duration="2455000" />
+      <workItem from="1600594410844" duration="1089000" />
+      <workItem from="1600595586513" duration="664000" />
+      <workItem from="1600596533200" duration="1513000" />
+      <workItem from="1600617126466" duration="599000" />
+      <workItem from="1600619409611" duration="6418000" />
+      <workItem from="1600673401665" duration="9495000" />
+      <workItem from="1600778530768" duration="20299000" />
+      <workItem from="1600843221131" duration="2068000" />
+      <workItem from="1600867632285" duration="11086000" />
+      <workItem from="1600966277757" duration="8574000" />
+      <workItem from="1601014610098" duration="13153000" />
+      <workItem from="1601226814787" duration="12592000" />
+      <workItem from="1601389639373" duration="5947000" />
+      <workItem from="1601449254425" duration="8633000" />
+      <workItem from="1601626813304" duration="596000" />
+      <workItem from="1601888409876" duration="17351000" />
+      <workItem from="1601972881284" duration="6409000" />
+      <workItem from="1602069827905" duration="13931000" />
+      <workItem from="1602177218095" duration="1967000" />
+      <workItem from="1602231594129" duration="11701000" />
+      <workItem from="1602329044362" duration="4741000" />
+      <workItem from="1602347887875" duration="3772000" />
+      <workItem from="1602416379307" duration="28440000" />
+      <workItem from="1602490065218" duration="37941000" />
+      <workItem from="1602574880390" duration="657000" />
+      <workItem from="1602602988067" duration="5068000" />
+      <workItem from="1602693619202" duration="11788000" />
+      <workItem from="1602750139568" duration="6801000" />
+      <workItem from="1602783981651" duration="25486000" />
+      <workItem from="1602863539438" duration="8463000" />
+      <workItem from="1602932884327" duration="15811000" />
+      <workItem from="1603011907251" duration="21815000" />
+      <workItem from="1603124792596" duration="4425000" />
+      <workItem from="1603190977612" duration="951000" />
+      <workItem from="1603209869280" duration="2011000" />
+      <workItem from="1603274501379" duration="1259000" />
+      <workItem from="1608473769509" duration="1838000" />
+      <workItem from="1608660650602" duration="4889000" />
+      <workItem from="1608734665321" duration="8544000" />
+      <workItem from="1608793742528" duration="2981000" />
+      <workItem from="1608835837992" duration="624000" />
+      <workItem from="1609072292248" duration="578000" />
+      <workItem from="1611333325633" duration="755000" />
+      <workItem from="1611381377919" duration="1140000" />
+      <workItem from="1611412355037" duration="1059000" />
+      <workItem from="1611586806907" duration="1308000" />
+      <workItem from="1611653233401" duration="2217000" />
+      <workItem from="1611899922947" duration="1115000" />
+      <workItem from="1616856242986" duration="767000" />
+      <workItem from="1617732523420" duration="258000" />
+      <workItem from="1617733009250" duration="2117000" />
+      <workItem from="1617815721074" duration="4473000" />
+      <workItem from="1617867773553" duration="65000" />
+      <workItem from="1618916030938" duration="3296000" />
+      <workItem from="1618925066597" duration="5592000" />
+    </task>
+    <task id="LOCAL-00001" summary="ui teacher functionality done">
+      <created>1599848179045</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1599848179045</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ui teacher functionality done">
+      <created>1599848382803</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1599848382803</updated>
+    </task>
+    <task id="LOCAL-00003" summary="assignments add">
+      <created>1600409749014</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600409749014</updated>
+    </task>
+    <task id="LOCAL-00004" summary="security for t. func add">
+      <created>1600843423814</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600843423814</updated>
+    </task>
+    <task id="LOCAL-00005" summary="security for t. func add">
+      <created>1600883919892</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600883919893</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ui upgrade">
+      <created>1601028675454</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601028675454</updated>
+    </task>
+    <task id="LOCAL-00007" summary="ui final">
+      <created>1601319115056</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601319115056</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add teacher pagination">
+      <created>1602329293978</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1602329293978</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add mail notification&#10;upgrade teacher timetable">
+      <created>1602611854026</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1602611854026</updated>
+    </task>
+    <task id="LOCAL-00010" summary="upgrade teacher ui">
+      <created>1603024687767</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1603024687767</updated>
+    </task>
+    <task id="LOCAL-00011" summary="version 1.0">
+      <created>1603043202686</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603043202686</updated>
+    </task>
+    <task id="LOCAL-00012" summary="version 1.0">
+      <created>1603135658566</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1603135658566</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ui teacher functionality done" />
+    <MESSAGE value="assignments add" />
+    <MESSAGE value="security for t. func add" />
+    <MESSAGE value="ui upgrade" />
+    <MESSAGE value="ui final" />
+    <MESSAGE value="add teacher pagination" />
+    <MESSAGE value="add mail notification&#10;upgrade teacher timetable" />
+    <MESSAGE value="upgrade teacher ui" />
+    <MESSAGE value="version 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 1.0" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="548" y="187" key="FileChooserDialogImpl" timestamp="1617867834393">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="548" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1617867834393" />
+    <state width="1487" height="386" key="GridCell.Tab.0.bottom" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="386" key="GridCell.Tab.0.center" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="386" key="GridCell.Tab.0.left" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="386" key="GridCell.Tab.0.right" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="386" key="GridCell.Tab.1.bottom" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="386" key="GridCell.Tab.1.center" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="386" key="GridCell.Tab.1.left" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="386" key="GridCell.Tab.1.right" timestamp="1618930536424">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="386" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1618930536424" />
+    <state width="1487" height="192" key="GridCell.Tab.2.bottom" timestamp="1617867597613">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="192" key="GridCell.Tab.2.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617867597613" />
+    <state width="1487" height="192" key="GridCell.Tab.2.center" timestamp="1617867597612">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="192" key="GridCell.Tab.2.center/0.0.1536.864@0.0.1536.864" timestamp="1617867597612" />
+    <state width="1487" height="192" key="GridCell.Tab.2.left" timestamp="1617867597612">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="192" key="GridCell.Tab.2.left/0.0.1536.864@0.0.1536.864" timestamp="1617867597612" />
+    <state width="1487" height="192" key="GridCell.Tab.2.right" timestamp="1617867597613">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1487" height="192" key="GridCell.Tab.2.right/0.0.1536.864@0.0.1536.864" timestamp="1617867597613" />
+    <state x="183" y="0" key="SettingsEditor" timestamp="1617815763347">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="183" y="0" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1617815763347" />
+    <state x="281" y="78" key="Vcs.Push.Dialog.v2" timestamp="1618930684608">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="281" y="78" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1618930684608" />
+    <state x="478" y="0" width="676" height="864" key="find.popup" timestamp="1618930852387">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="478" y="0" width="676" height="864" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1618930852387" />
+    <state x="347" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1617817220675">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="347" y="-1" width="840" height="1034" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1617817220675" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/netcracker/edu/distancestudyweb/service/impl/DatabaseFileUiServiceImpl.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/netcracker/edu/distancestudyweb/controller/TeacherHomeworkController.java</url>
+          <line>242</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/netcracker/edu/distancestudyweb/controller/TeacherHomeworkController.java</url>
+          <line>234</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

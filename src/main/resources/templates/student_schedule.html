@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DSP - Schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--    <link rel="stylesheet" th:href="@{/static/css/studentHomework.css}"/>-->
+    <link rel="stylesheet" th:href="@{/static/css/studentSchedule.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/common.css}"/>
+    <th:block th:insert="fragments/commonHeaders.html :: commonHead"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+    <th:block th:insert="fragments/navbar.html :: navbar" />
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center mx-auto p-3 mt-2 bg-info text-light">Today Schedule</h3>
+                        <div th:if="${todaySchedule.empty}">
+                            <p class="text-secondary text-center">No classes today</p>
+                        </div>
+                        <div th:if="${not todaySchedule.empty}" class = "center-block">
+                            <div class="w-100 p-3 center-block text-left bg-primary text-light font-weight-bold" th:text="${todaySchedule[0].dayName}"></div>
+                            <div class="w-100 p-3 center-block text-left bg-primary text-light font-weight-bold" th:text="${todaySchedule[0].weekIsOdd} ? 'Odd week' : 'Even week'" ></div>
+                            <table class="table center-block">
+                                <thead class="bg-primary text-light font-weight-bold">
+                                    <tr>
+                                        <th class="font-weight-bold" scope="col">Subject</th>
+                                        <th class="font-weight-bold" scope="col">Teacher</th>
+                                        <th class="font-weight-bold" scope="col">Type</th>
+                                        <th class="font-weight-bold" scope="col">ClassTime</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbrow font-weight-normal">
+                                    <tr th:each="tsrow : ${todaySchedule}">
+                                        <td class="tbrow font-weight-normal">
+                                            <a href="#subjectInfo" th:utext="${tsrow.subject.name}" data-toggle="collapse" data-target="#subjectInfo-" aria-expanded="false"
+                                               th:attrappend="data-target=${tsrow.id}" aria-controls="subjectInfo-"></a>
+                                            <div class="collapse" th:id="|subjectInfo-${tsrow.id}|">
+                                                <div class="card card-body">
+                                                    <a th:href="@{http://localhost:8081/studentHomework(subjectId = ${tsrow.subject.id}, page = 1)}" class="text-default">Homework</a>
+                                                    <a class="text-default" th:if="${tsrow.getLessonLink() != null}" th:href="${tsrow.getLessonLink()}" th:text="'Lesson link: ' + ${tsrow.getLessonLink()}"></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="tbrow font-weight-normal" scope="row" th:utext="${tsrow.teacher}"></td>
+                                        <td class="tbrow font-weight-normal" scope="row" th:utext="${tsrow.classType}"></td>
+                                        <td class="tbrow font-weight-normal" scope="row" th:utext="${tsrow.classTimeDto.startTime + '-' + tsrow.classTimeDto.endTime}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 class="text-center mx-auto p-3 mt-2 bg-info text-light">Tomorrow Schedule</h3>
+                        <div th:if="${tomorrowSchedule.empty}">
+                            <p class="text-secondary text-center">No classes tomorrow</p>
+                        </div>
+                        <div th:if="${not tomorrowSchedule.empty}" class = "center-block">
+                            <div class="w-100 p-3 center-block text-left bg-primary text-light font-weight-bold" th:text="${tomorrowSchedule[0].dayName}" ></div>
+                            <div class="w-100 p-3 center-block text-left bg-primary text-light font-weight-bold" th:text="${tomorrowSchedule[0].weekIsOdd} ? 'Odd week' : 'Even week'" ></div>
+                            <table class="table center-block">
+                                <thead class="bg-primary text-light font-weight-bold">
+                                    <tr>
+                                        <th class="font-weight-bold" scope="col">Subject</th>
+                                        <th class="font-weight-bold" scope="col">Teacher</th>
+                                        <th class="font-weight-bold" scope="col">Type</th>
+                                        <th class="font-weight-bold" scope="col">ClassTime</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbrow font-weight-normal">
+                                    <tr th:each="ndrow : ${tomorrowSchedule}">
+                                        <td class="tbrow font-weight-normal">
+                                            <a href="#subjectInfo" th:utext="${ndrow.subject.name}" data-toggle="collapse" data-target="#subjectInfo--" aria-expanded="false"
+                                               th:attrappend="data-target=${ndrow.id}" aria-controls="subjectInfo-"></a>
+                                            <div class="collapse" th:id="|subjectInfo--${ndrow.id}|">
+                                                <div class="card card-body">
+                                                    <a th:href="@{http://localhost:8081/studentHomework(subjectId = ${ndrow.subject.id}, page = 1)}" class="text-default">Homework</a>
+                                                    <a class="text-default" th:if="${ndrow.getLessonLink() != null}" th:href="${ndrow.getLessonLink()}" th:text="'Lesson link: ' + ${ndrow.getLessonLink()}"></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="tbrow font-weight-normal" scope="row" th:utext="${ndrow.teacher}"></td>
+                                        <td class="tbrow font-weight-normal" scope="row" th:utext="${ndrow.classType}"></td>
+                                        <td class="tbrow font-weight-normal" scope="row" th:utext="${ndrow.classTimeDto.startTime + '-' + ndrow.classTimeDto.endTime}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-8">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <h3 class="card-header info-color white-text text-center py-4">
+                                <strong>Choose subject</strong>
+                            </h3>
+                            <form class="text-center" action="#" th:action="@{/studentSchedule/subjectSchedule/}" th:object="${subjects}" method="get">
+                                <select class="mdb-select md-form select-form" name="subject">
+                                    <option th:value="0">All subjects</option>
+                                    <option  th:each="subject: ${subjects}" th:value="${subject.id}"
+                                             th:text="${subject.name}" th:selected="${subjectId}==${subject.id}"></option>>
+                                </select>
+                                <p ><input  class="select-form btn btn-outline-primary" style="border-radius: 25px"  type="submit" value="Show"/></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center mx-auto p-3 mt-2 bg-info text-light">Schedule</h3>
+                        <div class = "center-block" th:each="mschedule : ${mappedSchedule}">
+                            <div class="w-100 p-3 center-block text-left bg-primary text-light font-weight-bold" th:text="${mschedule.key.key}" ></div>
+                            <div class="w-100 p-3 center-block text-left bg-primary text-light font-weight-bold" th:text="${mschedule.key.value} ? 'Odd week' : 'Even week'" ></div>
+                            <table class="table center-block">
+                                <tr class="bg-primary text-light font-weight-bold">
+                                    <th class="font-weight-bold" scope="col">Subject</th>
+                                    <th class="font-weight-bold" scope="col">Teacher</th>
+                                    <th class="font-weight-bold" scope="col">Type</th>
+                                    <th class="font-weight-bold" scope="col">ClassTime</th>
+
+                                </tr>
+                                <tr th:each="row : ${mschedule.value}">
+                                    <td class="tbrow font-weight-normal">
+                                        <a href="#subjectInfo" th:utext="${row.subject.name}" data-toggle="collapse" data-target="#subjectInfo---" aria-expanded="false"
+                                           th:attrappend="data-target=${row.id}" aria-controls="subjectInfo-"></a>
+                                        <div class="collapse" th:id="|subjectInfo---${row.id}|">
+                                            <div class="card card-body">
+                                                <a th:href="@{http://localhost:8081/studentHomework(subjectId = ${row.subject.id}, page = 1)}" class="text-default">Homework</a>
+                                                <a class="text-default" th:if="${row.getLessonLink() != null}" th:href="${row.getLessonLink()}" th:text="'Lesson link: ' + ${row.getLessonLink()}"></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tbrow font-weight-normal" th:utext="${row.teacher}"></td>
+                                    <td class="tbrow font-weight-normal" th:utext="${row.classType}"></td>
+                                    <td class="tbrow font-weight-normal" th:utext="${row.classTimeDto.startTime + '-' + row.classTimeDto.endTime}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

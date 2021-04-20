@@ -1,0 +1,61 @@
+Index: src/main/java/com/netcracker/edu/distancestudyweb/service/impl/SubjectServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.netcracker.edu.distancestudyweb.service.impl;\r\n\r\n\r\nimport com.netcracker.edu.distancestudyweb.dto.SubjectDto;\r\nimport com.netcracker.edu.distancestudyweb.dto.wrappers.SubjectDtoList;\r\nimport com.netcracker.edu.distancestudyweb.service.SubjectService;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.web.client.RestTemplate;\r\nimport org.springframework.web.util.UriComponentsBuilder;\r\n\r\n\r\nimport java.util.List;\r\nimport java.util.Objects;\r\n\r\n@Service\r\npublic class SubjectServiceImpl implements SubjectService {\r\n    final static private String restUrl = \"http://localhost:8080/\";\r\n\r\n    @Override\r\n    public SubjectDtoList getAllSubjects(){\r\n        String URL = restUrl + \"allSubjects\";\r\n        return getSubjectRestTemplate(URL);\r\n    }\r\n\r\n    public SubjectDtoList getSubjectRestTemplate(String URL){\r\n\r\n        RestTemplate restTemplate = new RestTemplate();\r\n        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL);\r\n        ResponseEntity<SubjectDtoList> response\r\n                = restTemplate.getForEntity(builder.toUriString(), SubjectDtoList.class);\r\n        return new SubjectDtoList(Objects.requireNonNull(response.getBody()).getSubjects());\r\n    }\r\n\r\n\r\n\r\n\r\n    @Override\r\n    public List<SubjectDto> getSubjectsByTeacherId(Long teacherId) {\r\n\r\n        RestTemplate restTemplate = new RestTemplate();\r\n        String URL = restUrl + \"subjectsByTeacher\";\r\n        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)\r\n                .queryParam(\"teacherId\", teacherId);\r\n        ResponseEntity<SubjectDtoList> response\r\n                = restTemplate.getForEntity(builder.toUriString(), SubjectDtoList.class);\r\n        return response.getBody().getSubjects();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/netcracker/edu/distancestudyweb/service/impl/SubjectServiceImpl.java	(revision 1fa4c68975dccd77f683e6493595602a12b3a52b)
++++ src/main/java/com/netcracker/edu/distancestudyweb/service/impl/SubjectServiceImpl.java	(date 1600711911872)
+@@ -1,9 +1,13 @@
+ package com.netcracker.edu.distancestudyweb.service.impl;
+ 
+ 
++import com.netcracker.edu.distancestudyweb.domain.Subject;
+ import com.netcracker.edu.distancestudyweb.dto.SubjectDto;
+ import com.netcracker.edu.distancestudyweb.dto.wrappers.SubjectDtoList;
+ import com.netcracker.edu.distancestudyweb.service.SubjectService;
++import org.springframework.core.ParameterizedTypeReference;
++import org.springframework.http.HttpEntity;
++import org.springframework.http.HttpMethod;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.stereotype.Service;
+ import org.springframework.web.client.RestTemplate;
+@@ -46,4 +50,13 @@
+                 = restTemplate.getForEntity(builder.toUriString(), SubjectDtoList.class);
+         return response.getBody().getSubjects();
+     }
++
++
++    @Override
++    public List<Subject> getAll() {
++        String url = serverUrl + "/subjects";
++        HttpEntity<Subject> httpEntity = entityProvider.getDefaultWithTokenFromContext(null, null);
++        ResponseEntity<List<Subject>> restAuthResponse = restTemplate.exchange(url, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<>() {});
++        return restAuthResponse.getBody();
++    }
+ }
+Index: src/main/java/com/netcracker/edu/distancestudyweb/service/SubjectService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.netcracker.edu.distancestudyweb.service;\r\n\r\n\r\nimport com.netcracker.edu.distancestudyweb.dto.SubjectDto;\r\nimport com.netcracker.edu.distancestudyweb.dto.wrappers.SubjectDtoList;\r\n\r\nimport java.util.List;\r\n\r\n\r\npublic interface SubjectService {\r\n    SubjectDtoList getAllSubjects();\r\n    List<SubjectDto> getSubjectsByTeacherId(Long teacherId);\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/netcracker/edu/distancestudyweb/service/SubjectService.java	(revision 1fa4c68975dccd77f683e6493595602a12b3a52b)
++++ src/main/java/com/netcracker/edu/distancestudyweb/service/SubjectService.java	(date 1600711911915)
+@@ -1,6 +1,7 @@
+ package com.netcracker.edu.distancestudyweb.service;
+ 
+ 
++import com.netcracker.edu.distancestudyweb.domain.Subject;
+ import com.netcracker.edu.distancestudyweb.dto.SubjectDto;
+ import com.netcracker.edu.distancestudyweb.dto.wrappers.SubjectDtoList;
+ 
+@@ -10,5 +11,5 @@
+ public interface SubjectService {
+     SubjectDtoList getAllSubjects();
+     List<SubjectDto> getSubjectsByTeacherId(Long teacherId);
+-
++    List<Subject> getAll();
+ }

@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/static/css/error.css}"/>
+</head>
+<body>
+
+    <div align="center">
+        <h1 th:if="${message != null}" th:text="${message}"></h1>
+        <h1 th:if="${message == null}">Whoops!Something went wrong</h1>
+    </div>
+
+</body>
+</html>

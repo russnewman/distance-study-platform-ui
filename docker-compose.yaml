@@ -1,0 +1,45 @@
+version: '3'
+services:
+  server:
+    container_name: distance-study-server
+    image: karim0724/distance-study-server:v1
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - distance-study
+    environment:
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/distance_study_platform?serverTimezone=UTC
+      SPRING_PROFILES: security
+      LOG_LEVEL: INFO
+    restart: on-failure
+  db:
+    restart: always
+    container_name: mysql-db
+    image: mysql
+    networks:
+      - distance-study
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: distance_study_platform
+      MYSQL_ROOT_PASSWORD: password
+  web:
+    container_name: webUI
+    image: karim0724/distance-study-web:v1
+    networks:
+      - distance-study
+    depends_on:
+      - server
+    restart: on-failure
+    environment:
+      REST_URL: http://server:8080
+      UI_URL: http://81.163.28.19:8081
+    ports:
+      - 8081:8081
+networks:
+  distance-study:
+    driver: bridge

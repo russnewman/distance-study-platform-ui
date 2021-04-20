@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/static/css/studentSchedule.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/studentHomework.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/common.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+<th:block th:insert="fragments/navbar.html :: navbar" />
+<div class="container wcont">
+    <div class="row mt-5">
+        <div class="col-md-3 text-center">
+            <a class="btn btn-outline-secondary" href="/home">Back</a>
+        </div>
+        <div class="col-md-6">
+            <form action="#" th:action="@{/studentSchedule/subjectSchedule/}" th:object="${subjects}" method="get" id="subject-choose-form">
+                <div class="form-group row">
+                    <label for="subject-input" class="col-md-4 col-form-label text-center">Subject</label>
+                                <select class="mdb-select md-form" name="subject" id="subject-input">
+                                    <option th:value="null">Subject</option>
+                                    <option  th:each="subject: ${subjects}" th:value="${subject.id}" th:text="${subject.name}" th:selected="${subject}==${subject.id}"></option>>
+                                </select>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4 text-right">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="col-md-8 offset-md-8">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div align="center" class = "center-block" th:each="mschedule : ${mappedSchedule}">
+    <div align="center" class="w-50 p-3 center-block text-left" th:text="${mschedule.key.key}" style="background-color:#1dabc1; ; width:60%; max-width:600px;font-weight:bold;"></div>
+    <div align="center" class="w-50 p-3 center-block text-left" th:text="${mschedule.key.value} ? 'Odd week' : 'Even week'" style="background-color:#1dabc1; height:60%; width:60%; max-width:600px;"></div>
+    <table class="table center-block" style="background-color:#38ab83; width:60%; max-width:600px">
+        <tr style="background-color:#1cd095;">
+            <th scope="col">Subject</th>
+            <th scope="col">Teacher</th>
+            <th scope="col">ClassTime</th>
+        </tr>
+        <tr th:each="row : ${mschedule.value}">
+            <td scope="row" th:utext="${row.subject}"></td>
+            <td scope="row" th:utext="${row.teacher}"></td>
+            <td scope="row" th:utext="${row.classTimeDto.startTime + '-' + row.classTimeDto.endTime}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
