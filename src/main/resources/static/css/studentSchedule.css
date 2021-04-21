@@ -37,7 +37,7 @@
 }
 
 .table-title {
-    background-color: #1789b3;
+    background-color: lightsteelblue;
     height: 60%;
     width: 60%;
     max-width: 600px;
@@ -47,7 +47,7 @@
 }
 
 .hrow{
-    background-color: #33b5e5;
+    background-color: #C0D0E5;
     font-weight: bolder;
     font-size: large;
 }
