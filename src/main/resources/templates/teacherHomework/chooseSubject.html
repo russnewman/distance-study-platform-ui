@@ -27,10 +27,8 @@
     <div class="row">
         <div class="col-md-6 offset-md-3 p-3" th:each="subject: ${subjects}">
             <div class="card mt-1" style="margin-top: 10px; margin-outside: 20px">
-                <div class="card-header">
+                <div class="card-body">
                     <h4><a th:text="${subject.getName()}" th:href="'/teacherHomework/addEvent/'+ ${subject.getName()}" class="stretched-link" style="color: black"></a></h4>
-                </div>
-                <div class="card-body" th:text="${subject.getDescription()}">
                 </div>
             </div>
         </div>
